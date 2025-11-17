@@ -13,7 +13,7 @@ const createcompanydata = async (req, res) => {
             employeesCount,
             address,
             city,
-            state,
+            status,
             country,
             website,
             email,
@@ -68,7 +68,7 @@ const createcompanydata = async (req, res) => {
             employeesCount,
             address,
             city,
-            state,
+            status,
             country,
             website,
             email,
@@ -106,9 +106,9 @@ const getallcomapnydata = async (req, res) => {
     try {
         const response = await CompanyModel.find({});
         if (!response) {
-            return res.state(404).json({ success: false, message: "No Company data found !!!" });
+            return res.status(404).json({ success: false, message: "No Company data found !!!" });
         }
-        return res.state(200).json({ success: true, data: response });
+        return res.status(200).json({ success: true, data: response });
     }
     catch (error) {
         res.status(500).json({ success: false, message: error.message });
@@ -122,7 +122,7 @@ const getsinglecompanydata = async (req, res) => {
         const response = await CompanyModel.findById(id);
 
         if (!response) {
-            return res.state(404).json({ success: false, message: "Company data not fund !!!" });
+            return res.status(404).json({ success: false, message: "Company data not fund !!!" });
         }
     }
     catch (error) {
@@ -135,7 +135,7 @@ const deletecompanydata = async (req, res) => {
     try {
         const response = await CompanyModel.findByIdAndDelete(id);
         if (!response) {
-            return res.state(404).json({ success: false, message: "Comapny is not found !!!" });
+            return res.status(404).json({ success: false, message: "Comapny is not found !!!" });
         }
 
         return res.status(200).json({ success: true, message: "Compant data deleted successfullly !!!" });
@@ -149,13 +149,13 @@ const deletecompanydata = async (req, res) => {
 
 const searchCompany = async (req, res) => {
     try {
-        const { name, city, state, country } = req.query;
+        const { name, city, status, country } = req.query;
         let query = {};
         if (name) {
             query.companyName = { $regex: name, $options: "i" };
         }
         if (city) query.city = { $regex: city, $options: "i" };
-        if (state) query.state = { $regex: state, $options: "i" };
+        if (status) query.status = { $regex: status, $options: "i" };
         if (country) query.country = { $regex: country, $options: "i" };
         if (industry) query.industry = { $regex: industry, $options: "i" };
 
