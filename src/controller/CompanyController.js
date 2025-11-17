@@ -124,6 +124,7 @@ const getsinglecompanydata = async (req, res) => {
         if (!response) {
             return res.status(404).json({ success: false, message: "Company data not fund !!!" });
         }
+        res.status(200).json({ success: true, data: response });
     }
     catch (error) {
         res.status(500).json({ success: false, message: error.message });
