@@ -10,10 +10,10 @@ companyroute.get('/compantdetails', getallcomapnydata);
 companyroute.get('/compantdetails/:id', getsinglecompanydata);
 
 // serch company name , location city , state 
-companyroute.get("/companydetails/search", searchCompany);
+companyroute.get("/compantdetails/companydetails/search", searchCompany);
 
 // serch industry name  
-companyroute.get("/industry/name", getCompaniesByIndustry);
+companyroute.get("/compantdetails/industry/name", getCompaniesByIndustry);
 
 // post data
 companyroute.post('/compantdetails/add', createcompanydata);
